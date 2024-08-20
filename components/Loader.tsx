@@ -3,7 +3,7 @@ import React from 'react'
 const Loader = () => {
   return (
     /* From Uiverse.io by JkHuger */
-    <div className=" min-h-screen flex justify-center items-center">
+    <div className=" flex justify-center items-center">
       <div className="loader">
         <div className="square" id="sq1"></div>
         <div className="square" id="sq2"></div>
