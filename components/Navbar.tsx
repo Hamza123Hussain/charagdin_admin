@@ -2,7 +2,7 @@
 import { UserContext } from '@/utils/Context'
 import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
-import ShowingUser from './Auth/ShowingUser'
+import Userdetails from './Auth/UserDetails'
 
 const Navbar = () => {
   const { userData } = useContext(UserContext)
@@ -19,7 +19,7 @@ const Navbar = () => {
         <h6 className=" text-lg text-slate-800 font-extrabold">CharagDin</h6>
       </div>
       {userData ? (
-        <ShowingUser />
+        <Userdetails />
       ) : (
         <h1 className=" text-lg text-slate-900 font-extralight">Admin Panel</h1>
       )}
