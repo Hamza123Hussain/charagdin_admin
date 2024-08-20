@@ -4,6 +4,7 @@ import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Login from '@/app/login/page'
 import { UserContext } from '@/utils/Context'
+import Sidebar from './SideBar'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
@@ -26,7 +27,17 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
     return null // or a loading spinner if preferred
   }
 
-  return <>{userData || isAuthPage ? <> {children} </> : <Login />}</>
+  return (
+    <>
+      {userData || isAuthPage ? (
+        <div className=" flex gap-2">
+          <Sidebar /> {children}{' '}
+        </div>
+      ) : (
+        <Login />
+      )}
+    </>
+  )
 }
 
 export default ConditionalLayout
