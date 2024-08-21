@@ -1,10 +1,12 @@
 'use client'
 import React, { ReactNode, useContext, useEffect, useState } from 'react'
-
-import { usePathname } from 'next/navigation'
-import Login from '@/app/login/page'
 import { UserContext } from '@/utils/Context'
-import Sidebar from './SideBar'
+import { usePathname } from 'next/navigation'
+
+import Navbar from './Navbar'
+
+import Login from '@/app/login/page'
+import MobileSideBar from './MobileSIdeBAR'
 
 const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   const { userData } = useContext(UserContext)
@@ -29,18 +31,34 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      {userData || isAuthPage ? (
-        <div className=" flex w-full">
-          {userData ? (
-            <>
-              <Sidebar /> {children}
-            </>
-          ) : (
-            <>{children}</>
-          )}
+      {userData ? (
+        <div className="flex flex-col min-h-screen">
+          {/* Sidebar
+          <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:top-0 md:left-0 md:h-full bg-slate-800 text-white">
+            <Sidebar />
+          </div> */}
+
+          {/* <div className="flex-1 flex flex-col md:ml-64"> */}
+          <MobileSideBar />
+          <main className="flex-1 min-h-screen overflow-y-auto bg-gray-100 ">
+            {children}
+          </main>
+          {/* </div> */}
+        </div>
+      ) : isAuthPage ? (
+        <div className="flex flex-col h-screen">
+          <Navbar />
+          <main className="flex-1 overflow-y-auto bg-gray-100 p-4">
+            {children}
+          </main>
         </div>
       ) : (
-        <Login />
+        <div className="flex flex-col h-screen">
+          <Navbar />
+          <main className="flex-1 overflow-y-auto bg-gray-100 p-4">
+            <Login />
+          </main>
+        </div>
       )}
     </>
   )
