@@ -1,12 +1,13 @@
 'use client'
-import { CreateCatorgorie } from '@/functions/CRUD/Catorgories/Create'
-import { CreateProduct } from '@/functions/CRUD/Product/Create'
+
+import { CreateCategory } from '@/functions/CRUD/Catorgories/Create'
 import React, { useState } from 'react'
 const CreateCatogory = () => {
   const [CatorgoryName, setCatorgoryName] = useState('')
   const [imageFile, setImageFile] = useState(null)
   const handleFileChange = (e: any) => {
     setImageFile(e.target.files[0])
+    console.log('IMAGE :', imageFile)
   }
   /**  CatorgoryName: string,
   ImageUrl: string,
@@ -14,7 +15,11 @@ const CreateCatogory = () => {
   Category: string */
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const dATA = await CreateCatorgorie(CatorgoryName, 'hamza@gmail.com')
+    const dATA = await CreateCategory(
+      CatorgoryName,
+      'hamza@gmail.com',
+      imageFile
+    )
   }
 
   return (
@@ -41,7 +46,7 @@ const CreateCatogory = () => {
               required
             />
           </div>
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label
               htmlFor="imageFile"
               className="block text-gray-700 text-sm font-medium mb-2"
@@ -55,7 +60,7 @@ const CreateCatogory = () => {
               className="w-full border border-gray-300 p-2 rounded-lg"
               required
             />
-          </div> */}
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
