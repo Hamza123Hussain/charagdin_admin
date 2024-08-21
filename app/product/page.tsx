@@ -5,7 +5,6 @@ const CreateProducts = () => {
   const [productName, setProductName] = useState('')
   const [imageFile, setImageFile] = useState(null)
   const [category, setCategory] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
 
   const handleFileChange = (e: any) => {
     setImageFile(e.target.files[0])
@@ -18,7 +17,7 @@ const CreateProducts = () => {
     e.preventDefault()
     const Data = await CreateProduct(
       productName,
-      'hahns',
+      imageFile,
       'hamza@gmail.com',
       category
     )
@@ -48,7 +47,7 @@ const CreateProducts = () => {
               required
             />
           </div>
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label
               htmlFor="imageFile"
               className="block text-gray-700 text-sm font-medium mb-2"
@@ -62,7 +61,7 @@ const CreateProducts = () => {
               className="w-full border border-gray-300 p-2 rounded-lg"
               required
             />
-          </div> */}
+          </div>
           <div className="mb-4">
             <label
               htmlFor="category"
