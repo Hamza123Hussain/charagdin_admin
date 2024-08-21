@@ -1,55 +1,52 @@
 'use client'
-
 import { CreateCategory } from '@/functions/CRUD/Catorgories/Create'
 import React, { useState } from 'react'
-const CreateCatogory = () => {
-  const [CatorgoryName, setCatorgoryName] = useState('')
-  const [imageFile, setImageFile] = useState(null)
-  const handleFileChange = (e: any) => {
-    setImageFile(e.target.files[0])
-    console.log('IMAGE :', imageFile)
+
+const CreateCategorys = () => {
+  const [categoryName, setCategoryName] = useState('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setImageFile(e.target.files ? e.target.files[0] : null)
   }
-  /**  CatorgoryName: string,
-  ImageUrl: string,
-  UserEmail: string,
-  Category: string */
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const dATA = await CreateCategory(
-      CatorgoryName,
+    const data = await CreateCategory(
+      categoryName,
       'hamza@gmail.com',
       imageFile
     )
   }
 
   return (
-    <div className="flex justify-center items-center w-[50vw] mx-auto text-black  ">
-      <div className="  bg-white shadow-md rounded-lg p-8">
-        <h1 className="text-2xl font-semibold mb-6 text-gray-800">
-          Create Product
+    <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-6">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h1 className="text-3xl font-bold mb-6 text-gray-800">
+          Create Category
         </h1>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+          <div className="mb-5">
             <label
-              htmlFor="CatorgoryName"
-              className="block text-gray-700 text-sm font-medium mb-2"
+              htmlFor="categoryName"
+              className="block text-gray-700 text-sm font-semibold mb-2"
             >
-              Product Name
+              Category Name
             </label>
             <input
               type="text"
-              id="CatorgoryName"
-              value={CatorgoryName}
-              onChange={(e) => setCatorgoryName(e.target.value)}
-              className="w-full border border-gray-300 p-2 rounded-lg"
-              placeholder="Enter product name"
+              id="categoryName"
+              value={categoryName}
+              onChange={(e) => setCategoryName(e.target.value)}
+              className="w-full border border-gray-300 p-3 rounded-lg bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter category name"
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-5">
             <label
               htmlFor="imageFile"
-              className="block text-gray-700 text-sm font-medium mb-2"
+              className="block text-gray-700 text-sm font-semibold mb-2"
             >
               Image Upload
             </label>
@@ -57,15 +54,15 @@ const CreateCatogory = () => {
               type="file"
               id="imageFile"
               onChange={handleFileChange}
-              className="w-full border border-gray-300 p-2 rounded-lg"
+              className="w-full border border-gray-300 p-2 rounded-lg bg-gray-50 text-gray-700 cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-150"
           >
-            Create Product
+            Create Category
           </button>
         </form>
       </div>
@@ -73,4 +70,4 @@ const CreateCatogory = () => {
   )
 }
 
-export default CreateCatogory
+export default CreateCategorys
