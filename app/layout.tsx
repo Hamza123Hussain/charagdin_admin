@@ -23,8 +23,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <ContextProvider>
           <div className=" flex flex-col">
-            <Navbar />
             <ConditionalLayout>{children}</ConditionalLayout>
+            <></>
           </div>
         </ContextProvider>
       </body>
