@@ -19,11 +19,10 @@ const Userdetails = () => {
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="flex gap-2 items-center">
-        {/* Conditionally render user's name only on the client */}
-        {isClient && userData?.Name ? (
-          <>
+    <>
+      {isClient && userData?.Name ? (
+        <div className="flex flex-col gap-2 items-center">
+          <div className=" flex gap-2 items-center">
             <img
               src="g"
               width={20}
@@ -34,20 +33,20 @@ const Userdetails = () => {
             <h1 className="font-bold text-sm text-slate-800">
               {userData.Name}
             </h1>
-            <button
-              onClick={ByeBye}
-              className="px-5 gap-2 bg-red-500 text-black rounded-lg"
-            >
-              Sign Out
-            </button>
-          </>
-        ) : (
-          <h1 className="font-bold text-sm text-slate-800">
-            <Loader />
-          </h1>
-        )}
-      </div>
-    </div>
+          </div>
+          <button
+            onClick={ByeBye}
+            className="px-5 gap-2 bg-red-500 text-black rounded-lg"
+          >
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <h1 className="font-bold text-sm text-slate-800">
+          <Loader />
+        </h1>
+      )}
+    </>
   )
 }
 
