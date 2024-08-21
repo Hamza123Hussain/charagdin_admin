@@ -1,10 +1,14 @@
 'use client'
 import { CreateCategory } from '@/functions/CRUD/Catorgories/Create'
-import React, { useState } from 'react'
+import { UserContext } from '@/utils/Context'
+import React, { useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 const CreateCategorys = () => {
   const [categoryName, setCategoryName] = useState('')
   const [imageFile, setImageFile] = useState<File | null>(null)
+
+  const { userData } = useContext(UserContext)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImageFile(e.target.files ? e.target.files[0] : null)
@@ -12,11 +16,12 @@ const CreateCategorys = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = await CreateCategory(
-      categoryName,
-      'hamza@gmail.com',
-      imageFile
-    )
+    const data = await CreateCategory(categoryName, userData.email, imageFile)
+    if (data) {
+      toast.success('Catogory Added')
+      setCategoryName('')
+      setImageFile(null)
+    }
   }
 
   return (
