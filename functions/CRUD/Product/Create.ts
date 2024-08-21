@@ -3,28 +3,30 @@ import axios from 'axios'
 
 export const CreateProduct = async (
   ProductName: string,
-  ImageUrl: string,
+  Image: File | null, // Corrected parameter name
   UserEmail: string,
   Category: string
 ) => {
   try {
+    // Create a new FormData object
+    const formData = new FormData()
+    formData.append('ProductName', ProductName)
+    formData.append('UserEmail', UserEmail)
+    formData.append('Category', Category)
+    if (Image) {
+      formData.append('image', Image) // Use the correct key as expected in the API
+    }
+
     // Make the API request
-    const response = await axios.post(`${APIURL}/api/Product/Create`, {
-      ProductName,
-      ImageUrl,
-      UserEmail,
-      Category,
-    })
+    const response = await axios.post(`${APIURL}/api/Product/Create`, formData)
 
     if (response.status === 200) {
-      console.log('API RESPONSED', response.data)
+      console.log('API RESPONSE', response.data)
       return true
     }
   } catch (error) {
     // Handle errors
     console.error('Failed to create product:', error)
-
-    // Depending on the error structure, you might want to throw an error or return an error message
     throw new Error('Failed to create product. Please try again.')
   }
 }

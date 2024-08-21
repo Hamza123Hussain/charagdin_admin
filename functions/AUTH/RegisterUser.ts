@@ -6,29 +6,33 @@ export const RegisterUser = async (inputValues: InputValues) => {
   const { email, password, Name, Image } = inputValues
 
   try {
-    // // Append the image file if provided
-    // if (Image) {
-    //   formData.append('image', Image)
-    // }
+    // Create a new FormData object
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
+    formData.append('Name', Name)
+    if (Image) {
+      formData.append('image', Image) // Append the image file if provided
+    }
 
     // Send the POST request with FormData
-    const response = await axios.post(`${APIURL}/api/Auth/Register`, {
-      email,
-      password,
-      Name,
+    const response = await axios.post(`${APIURL}/api/Auth/Register`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
 
     if (response.status === 201) {
       return response.data
     } else if (
       response.status === 400 &&
-      response.data.message === 'Email already in use'
+      response.data.message === 'USER ALREADY EXISTS'
     ) {
       toast.error(
         'This email is already registered. Please use a different email.'
       )
     } else if (response.status === 500) {
-      alert('Internal server error. Please try again later.')
+      toast.error('Internal server error. Please try again later.')
     }
   } catch (error) {
     console.error('ERROR IN FUNCTION : ', error)
