@@ -24,7 +24,7 @@ const Userdetails = () => {
         <div className="flex flex-col gap-2 items-center">
           <div className=" flex gap-2 items-center">
             <img
-              src="g"
+              src={userData.imageUrl}
               width={20}
               height={20}
               className="rounded-full"
