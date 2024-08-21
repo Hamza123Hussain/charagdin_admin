@@ -1,17 +1,21 @@
 'use client'
+import Loader from '@/components/Loader'
 import { fetchProducts } from '@/functions/CRUD/Product/GettingProduct'
-import React, { useEffect, useState } from 'react'
+import { UserContext } from '@/utils/Context'
+import React, { useContext, useEffect, useState } from 'react'
 
 const ProductList = () => {
   const [products, setProducts] = useState<any[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+  const { loading, setLoading } = useContext(UserContext)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const loadProducts = async () => {
+      setLoading(true)
       try {
         const productData = await fetchProducts('hamza@gmail.com')
         setProducts(productData)
+        setLoading(false)
       } catch (error) {
         setError('Failed to fetch products.')
       } finally {
@@ -23,11 +27,7 @@ const ProductList = () => {
   }, [])
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <div className="text-gray-700 text-lg">Loading...</div>
-      </div>
-    )
+    return <Loader />
   }
 
   if (error) {
@@ -50,7 +50,7 @@ const ProductList = () => {
             <img
               src={product.ImageUrl}
               alt={product.Name}
-              className="w-full h-48 object-cover rounded-t-lg"
+              className="w-full  object-cover rounded-t-lg"
             />
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2 text-gray-900">
