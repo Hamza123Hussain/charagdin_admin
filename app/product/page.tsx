@@ -1,12 +1,32 @@
 'use client'
+import { fetchCatogories } from '@/functions/CRUD/Catorgories/Fetch'
 import { CreateProduct } from '@/functions/CRUD/Product/Create'
-import React, { useState } from 'react'
+import { Category } from '@/utils/CatogoriesInterFace'
+import { UserContext } from '@/utils/Context'
+import { Loader } from 'lucide-react'
+import React, { useContext, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 const CreateProducts = () => {
   const [productName, setProductName] = useState('')
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [category, setCategory] = useState('')
-
+  const [Catogories, SetCatogories] = useState<Category[]>([])
+  const { userData, loading, setLoading } = useContext(UserContext)
+  useEffect(() => {
+    const GetALL = async () => {
+      setLoading(true)
+      const Userdata = await fetchCatogories(userData.email)
+      if (Userdata) {
+        SetCatogories(Userdata)
+        setLoading(false)
+      }
+    }
+    GetALL()
+  }, [])
+  if (loading) {
+    return <Loader />
+  }
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImageFile(e.target.files ? e.target.files[0] : null)
   }
@@ -16,9 +36,15 @@ const CreateProducts = () => {
     const Data = await CreateProduct(
       productName,
       imageFile,
-      'hamza@gmail.com',
+      userData.email,
       category
     )
+    if (Data) {
+      toast.success('PRODUCT HAS BEEN MADE')
+      setCategory('')
+      setImageFile(null)
+      setProductName('')
+    }
   }
 
   return (
@@ -75,10 +101,11 @@ const CreateProducts = () => {
               required
             >
               <option value="">Select category</option>
-              <option value="electronics">Electronics</option>
-              <option value="fashion">Fashion</option>
-              <option value="home">Home</option>
-              <option value="books">Books</option>
+              {Catogories.map((element) => (
+                <option key={element.id} value={element.Name}>
+                  {element.Name}
+                </option>
+              ))}
             </select>
           </div>
           <button
