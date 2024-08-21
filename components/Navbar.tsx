@@ -18,7 +18,7 @@ const Navbar = () => {
         <Image src={'/Logo.png'} width={40} height={30} alt="Logo" />{' '}
         <h6 className=" text-lg text-slate-800 font-extrabold">CharagDin</h6>
       </div>
-      {userData ? (
+      {userData && isClient ? (
         <Userdetails />
       ) : (
         <h1 className=" text-lg text-slate-900 font-extralight">Admin Panel</h1>
