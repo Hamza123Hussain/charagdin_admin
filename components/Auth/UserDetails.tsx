@@ -25,7 +25,7 @@ const Userdetails = () => {
         {isClient && userData?.Name ? (
           <>
             <img
-              src="https://www.hindustantimes.com/web-stories/hania-aamirs-note-worthy-ethnic-looks-_NIQlE3VcFMqP0zB05EX/assets/20.jpeg"
+              src="g"
               width={20}
               height={20}
               className="rounded-full"
