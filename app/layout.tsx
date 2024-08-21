@@ -5,6 +5,7 @@ import './globals.css'
 import ConditionalLayout from '@/components/ConditonalLayout'
 import ContextProvider from '@/utils/Context'
 import Navbar from '@/components/Navbar'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ContextProvider>
           <div className=" flex flex-col">
-            <ConditionalLayout>{children}</ConditionalLayout>
+            <ConditionalLayout>
+              {children} <Toaster />
+            </ConditionalLayout>
             <></>
           </div>
         </ContextProvider>
