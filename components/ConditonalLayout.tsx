@@ -30,7 +30,7 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {userData || isAuthPage ? (
-        <div className=" flex gap-2">
+        <div className=" flex">
           <Sidebar /> {children}{' '}
         </div>
       ) : (
