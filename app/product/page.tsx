@@ -37,7 +37,8 @@ const CreateProducts = () => {
       productName,
       imageFile,
       userData.email,
-      category
+      category,
+      userData.Name
     )
     if (Data) {
       toast.success('PRODUCT HAS BEEN MADE')
