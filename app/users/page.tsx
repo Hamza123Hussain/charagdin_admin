@@ -4,14 +4,7 @@ import Image from 'next/image'
 import { fetchUsers } from '@/functions/Users/GetUsers'
 import { UserContext } from '@/utils/Context'
 import Loader from '@/components/Loader'
-
-interface User {
-  id: string
-  imageUrl: string
-  Name: string
-  email: string
-  role: string
-}
+import { User } from '@/utils/UserInterface'
 
 const UsersPage = () => {
   const [Users, SetUsers] = useState<User[]>([])
@@ -41,10 +34,12 @@ const UsersPage = () => {
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
             <div className="w-full aspect-w-16 aspect-h-9">
-              <img
+              <Image
                 src={user.imageUrl}
                 alt={user.email}
                 className="w-full h-full object-cover"
+                width={100}
+                height={50}
               />
             </div>
             <div className="p-4">
