@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { fetchCatogories } from '@/functions/CRUD/Catorgories/Fetch'
 import { UserContext } from '@/utils/Context'
-import { Loader } from 'lucide-react'
 import { Category } from '@/utils/CatogoriesInterFace'
+import Loader from '@/components/Loader'
 
 const ViewCategories = () => {
   const [Catogories, SetCatogories] = useState<Category[]>([])
@@ -33,13 +33,13 @@ const ViewCategories = () => {
             key={category.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
-            <img
-              src={category.imageUrl}
-              alt={category.Name}
-              width={400}
-              height={250}
-              className="object-cover w-full "
-            />
+            <div className="w-full aspect-w-16 aspect-h-9">
+              <img
+                src={category.imageUrl}
+                alt={category.Name}
+                className="w-full object-contain"
+              />
+            </div>
             <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 {category.Name}

@@ -8,7 +8,7 @@ import Loader from '@/components/Loader'
 interface User {
   id: string
   imageUrl: string
-  name: string
+  Name: string
   email: string
   role: string
 }
@@ -40,16 +40,16 @@ const UsersPage = () => {
             key={user.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
-            <img
-              src={user.imageUrl}
-              alt={user.name}
-              width={400}
-              height={250}
-              className="object-cover w-full h-48"
-            />
+            <div className="w-full aspect-w-16 aspect-h-9">
+              <img
+                src={user.imageUrl}
+                alt={user.email}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {user.name}
+                {user.Name}
               </h2>
               <p className="text-gray-600 mb-2">Email: {user.email}</p>
             </div>

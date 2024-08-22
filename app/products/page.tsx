@@ -45,13 +45,15 @@ const ProductList = () => {
         {products.map((product) => (
           <li
             key={product.id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105"
+            className="shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105"
           >
-            <img
-              src={product.ImageUrl}
-              alt={product.Name}
-              className="w-full  object-cover rounded-t-lg"
-            />
+            <div className="w-full aspect-w-16 aspect-h-9">
+              <img
+                src={product.ImageUrl}
+                alt={product.Name}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="p-4">
               <h2 className="text-xl font-semibold mb-2 text-gray-900">
                 {product.Name}
