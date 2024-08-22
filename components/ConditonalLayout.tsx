@@ -52,7 +52,7 @@ const ConditionalLayout = ({ children }: { children: ReactNode }) => {
           {children}
         </div>
       ) : (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col  min-h-screen">
           <Navbar />
 
           <Login />
