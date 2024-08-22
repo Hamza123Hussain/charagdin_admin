@@ -5,7 +5,8 @@ export const CreateProduct = async (
   ProductName: string,
   Image: File | null, // Corrected parameter name
   UserEmail: string,
-  Category: string
+  Category: string,
+  UserName: string
 ) => {
   try {
     // Create a new FormData object
@@ -13,6 +14,7 @@ export const CreateProduct = async (
     formData.append('ProductName', ProductName)
     formData.append('UserEmail', UserEmail)
     formData.append('Category', Category)
+    formData.append('UserName', UserName)
     if (Image) {
       formData.append('image', Image) // Use the correct key as expected in the API
     }
