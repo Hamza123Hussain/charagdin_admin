@@ -1,4 +1,4 @@
-export const APIURL = 'http://localhost:8000'
+export const APIURL = 'https://charag-din-backend.vercel.app'
 export interface InputValues {
   email: string
   password: string
