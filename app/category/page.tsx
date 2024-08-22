@@ -16,7 +16,12 @@ const CreateCategorys = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = await CreateCategory(categoryName, userData.email, imageFile)
+    const data = await CreateCategory(
+      categoryName,
+      userData.email,
+      imageFile,
+      userData.Name
+    )
     if (data) {
       toast.success('Catogory Added')
       setCategoryName('')
