@@ -66,15 +66,14 @@ const ProductList = () => {
               key={product.id}
               className="shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105"
             >
-              <div className="w-full aspect-w-16 aspect-h-9">
-                <Image
+              <div className=" w-full  sm:h-3/5 ">
+                <img
                   src={product.ImageUrl}
                   alt={product.Name}
-                  className="w-full h-full object-cover"
-                  width={100}
-                  height={10}
+                  className="w-full h-full "
                 />
               </div>
+
               <div className="p-4">
                 <h2 className="text-xl font-semibold mb-2 text-gray-900">
                   {product.Name}
