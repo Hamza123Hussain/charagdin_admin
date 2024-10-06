@@ -33,13 +33,14 @@ const ViewCategories = () => {
             key={category.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
           >
-            <div className=" h-3/4 ">
-              <img
-                src={category.imageUrl}
-                alt={category.Name}
-                className="w-full h-full "
-              />
-            </div>
+            <Image
+              src={category.imageUrl}
+              alt={category.Name}
+              width={500}
+              height={200}
+              className=" w-full h-auto sm:h-[70vh]"
+            />
+
             <div className="p-4">
               <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 {category.Name}
